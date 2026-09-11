@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Kho Đồ Án Sinh Viên | CodePro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#020617] text-slate-200">
+    <!-- Nav -->
+    <nav class="sticky top-0 w-full z-50 bg-[#020617]/90 backdrop-blur-xl border-b border-white/5 h-20 flex items-center px-10">
+        <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-black uppercase"><i class="fas fa-arrow-left mr-3 text-sm opacity-50"></i>Trang Chủ</a>
+            <div class="flex gap-8 text-[11px] font-bold uppercase tracking-widest">
+                <a href="student.html" class="text-blue-400">Sinh Viên</a>
+                <a href="business.html">Doanh Nghiệp</a>
+                <a href="contact.html">Liên Hệ</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-10 py-20">
+        <h2 class="text-6xl font-black mb-16 tracking-tighter">Student <span class="text-blue-500">Center</span></h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- Sản phẩm được Render lặp lại 10 lần với các Mã khác nhau -->
+            <script>
+                const stuProducts = [
+                    {id: "SV-01", name: "Web Bán Hàng PHP & MySQL", price: "150000", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c", tech: "PHP / Web"},
+                    {id: "SV-02", name: "Quản Lý Thư Viện Java Swing", price: "250000", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97", tech: "Java / Desktop"},
+                    {id: "SV-03", name: "App Bán Thức Ăn Android", price: "450000", img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c", tech: "Android / Mobile"},
+                    {id: "SV-04", name: "Quản Lý Nhà Thuốc C# .NET", price: "300000", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88", tech: "C# / Desktop"},
+                    {id: "SV-05", name: "Nhận Diện Khuôn Mặt Python", price: "500000", img: "https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1", tech: "Python / AI"},
+                    {id: "SV-06", name: "Website Tin Tức Laravel", price: "400000", img: "https://images.unsplash.com/photo-1495020689067-958852a7765e", tech: "PHP / Laravel"},
+                    {id: "SV-07", name: "Portfolio 3D React JS", price: "200000", img: "https://images.unsplash.com/photo-1633356122544-f134324a6cee", tech: "React / Frontend"},
+                    {id: "SV-08", name: "App Chat Flutter & Firebase", price: "450000", img: "https://images.unsplash.com/photo-1577563908411-5077b6ac7624", tech: "Flutter / App"},
+                    {id: "SV-09", name: "Quản Lý Khách Sạn C++", price: "250000", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945", tech: "C++ / Console"},
+                    {id: "SV-10", name: "Web Thi Trắc Nghiệm Node.js", price: "350000", img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8", tech: "Node.js / Web"}
+                ];
+
+                stuProducts.forEach(p => {
+                    document.write(`
+                        <div class="bg-slate-900/50 border border-white/5 rounded-[3rem] p-6 hover:border-blue-500/50 transition-all group">
+                            <div class="h-60 rounded-[2.5rem] overflow-hidden mb-8 relative">
+                                <img src="${p.img}?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                                <div class="absolute top-4 left-4 bg-blue-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase">Code: ${p.id}</div>
+                            </div>
+                            <h4 class="text-2xl font-bold mb-2">${p.name}</h4>
+                            <p class="text-slate-500 text-xs mb-8 uppercase tracking-widest font-bold">${p.tech}</p>
+                            <div class="flex justify-between items-center pt-6 border-t border-white/5">
+                                <span class="text-3xl font-black">${parseInt(p.price).toLocaleString()}đ</span>
+                                <a href="checkout.html?code=${p.id}&price=${p.price}&name=${encodeURIComponent(p.name)}" class="bg-white text-dark px-8 py-3 rounded-2xl font-bold text-sm transition-all hover:bg-blue-600 hover:text-white shadow-xl">Mua Ngay</a>
+                            </div>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </div>
+</body>
+</html>

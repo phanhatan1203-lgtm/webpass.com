@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Giải Pháp Doanh Nghiệp | CodePro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#020617] text-slate-200">
+    <nav class="sticky top-0 w-full z-50 bg-[#020617]/90 backdrop-blur-xl border-b border-white/5 h-20 flex items-center px-10">
+        <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-black uppercase"><i class="fas fa-arrow-left mr-3 text-sm opacity-50"></i>Trang Chủ</a>
+            <div class="flex gap-8 text-[11px] font-bold uppercase tracking-widest">
+                <a href="student.html">Sinh Viên</a>
+                <a href="business.html" class="text-secondary">Doanh Nghiệp</a>
+                <a href="contact.html">Liên Hệ</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-10 py-20">
+        <h2 class="text-6xl font-black mb-16 tracking-tighter uppercase italic">Business <span class="text-secondary">Elite</span></h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <script>
+                const bizProducts = [
+                    {id: "BIZ-01", name: "Hệ Thống ERP Tổng Thể", price: "5000000", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f", tech: "Fullstack / Enterprise"},
+                    {id: "BIZ-02", name: "Sàn TMĐT Multi-vendor", price: "4500000", img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c", tech: "Node.js / React"},
+                    {id: "BIZ-03", name: "Web Bất Động Sản VR Tour", price: "3800000", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa", tech: "Web / 3D VR"},
+                    {id: "BIZ-04", name: "QL Bệnh Viện & Hồ Sơ", price: "4800000", img: "https://images.unsplash.com/photo-1538108197017-c1c46cbdd097", tech: "Java / Spring Boot"},
+                    {id: "BIZ-05", name: "Ví Điện Tử & Thanh Toán", price: "5000000", img: "https://images.unsplash.com/photo-1563986768609-322da13575f3", tech: "Fintech / Mobile"},
+                    {id: "BIZ-06", name: "Web Booking Khách Sạn 5*", price: "3200000", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945", tech: "PHP / Laravel"},
+                    {id: "BIZ-07", name: "Dashboard AI Data Analytics", price: "4200000", img: "https://images.unsplash.com/photo-1551288049-bb1c003f07df", tech: "Python / Data"},
+                    {id: "BIZ-08", name: "Hệ Thống Kho & Logistics", price: "4500000", img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d", tech: "Fullstack / Warehouse"},
+                    {id: "BIZ-09", name: "E-Learning / Website Đào Tạo", price: "3500000", img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8", tech: "Web / Education"},
+                    {id: "BIZ-10", name: "Cổng Bảo Mật Network VIP", price: "5000000", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31", tech: "Security / Hub"}
+                ];
+
+                bizProducts.forEach(p => {
+                    document.write(`
+                        <div class="bg-slate-900/50 border border-white/5 rounded-[3rem] p-6 hover:border-secondary/50 transition-all group">
+                            <div class="h-60 rounded-[2.5rem] overflow-hidden mb-8 relative">
+                                <img src="${p.img}?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
+                                <div class="absolute top-4 left-4 bg-secondary text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase shadow-2xl">Mã: ${p.id}</div>
+                            </div>
+                            <h4 class="text-2xl font-bold mb-2">${p.name}</h4>
+                            <p class="text-slate-500 text-xs mb-8 uppercase tracking-widest font-bold">${p.tech}</p>
+                            <div class="flex justify-between items-center pt-6 border-t border-white/5">
+                                <span class="text-3xl font-black text-secondary">${parseInt(p.price).toLocaleString()}đ</span>
+                                <a href="checkout.html?code=${p.id}&price=${p.price}&name=${encodeURIComponent(p.name)}" class="bg-secondary text-white px-8 py-3 rounded-2xl font-bold text-sm shadow-xl hover:bg-white hover:text-dark transition-all">Đặt Mua</a>
+                            </div>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </div>
+</body>
+</html>

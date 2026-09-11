@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán | webpass.com</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] }, colors: { dark: '#020617', primary: '#3b82f6', secondary: '#8b5cf6', card: '#0f172a' } } } }
+    </script>
+    <style>
+        body { background-color: #020617; color: #f1f5f9; overflow-x: hidden; }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center shadow-2xl shadow-blue-500/20"><i class="fas fa-cubes text-white text-xl"></i></div>
+                <span class="text-2xl font-black uppercase tracking-tighter italic">webpass<span class="text-primary">.com</span></span>
+            </a>
+            <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-primary transition">← Quay lại trang chủ</a>
+        </div>
+    </nav>
+
+    <!-- Checkout Section -->
+    <section class="pt-36 pb-24 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black mb-4">Xác Nhận Thanh Toán</h1>
+            <p class="text-slate-400 text-sm">Quét mã QR để chuyển khoản và nhận mã nguồn tự động.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+            <!-- Thông tin đơn hàng & QR VCB -->
+            <div class="bg-card border border-white/5 rounded-[2.5rem] p-8 shadow-2xl">
+                <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                    <i class="fas fa-shopping-bag text-primary"></i> Chi tiết đơn hàng
+                </h3>
+                
+                <div id="product-info" class="space-y-4 mb-8 pb-6 border-b border-white/5">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-400">Mã sản phẩm:</span>
+                        <span id="p-id" class="font-bold text-primary">Đang tải...</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-400">Tên gói code:</span>
+                        <span id="p-name" class="font-bold">Đang tải...</span>
+                    </div>
+                    <div class="flex justify-between text-base">
+                        <span class="text-slate-400">Thành tiền:</span>
+                        <span id="p-price" class="font-black text-2xl text-emerald-400">0đ</span>
+                    </div>
+                </div>
+
+                <!-- VietQR Code VCB -->
+                <div class="text-center bg-dark/50 p-6 rounded-3xl border border-white/5">
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Vietcombank - STK: 1065762817</p>
+                    <p class="text-[11px] text-slate-500 mb-4">Chủ tài khoản: PHAN NHỰT TÂN</p>
+                    <div class="bg-white p-4 rounded-2xl inline-block mb-4 shadow-lg">
+                        <img id="qr-code" src="" class="w-48 h-48 mx-auto object-contain">
+                    </div>
+                    <p class="text-[11px] text-slate-400">Nội dung chuyển khoản: <span id="transfer-syntax" class="text-primary font-bold">WEBPASS</span></p>
+                </div>
+            </div>
+
+            <!-- Form điền thông tin khách hàng -->
+            <div class="bg-card border border-white/5 rounded-[2.5rem] p-8 shadow-2xl">
+                <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                    <i class="fas fa-user-shield text-secondary"></i> Thông Tin Nhận Code
+                </h3>
+                
+                <form id="checkout-form" onsubmit="submitOrder(event)" class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Họ tên của bạn</label>
+                        <input type="text" id="cus-name" required placeholder="Nguyễn Văn A" class="w-full bg-dark border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-primary transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Số điện thoại / Zalo</label>
+                        <input type="text" id="cus-phone" required placeholder="0912345678" class="w-full bg-dark border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-primary transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Email nhận source code</label>
+                        <input type="email" id="cus-email" required placeholder="email@domain.com" class="w-full bg-dark border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-primary transition">
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white py-4 rounded-2xl font-black uppercase tracking-widest text-sm shadow-xl shadow-blue-500/25 transition">
+                        Xác nhận đã chuyển khoản
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center bg-dark">
+        <p class="text-[10px] text-slate-700 font-black uppercase tracking-[1em]">&copy; 2026 WEBPASS.COM</p>
+    </footer>
+
+    <!-- Script xử lý tự động dữ liệu và VietQR VCB -->
+    <script>
+        const productsDB = {
+            "STU-101": { name: "Portfolio Profile Cá Nhân", price: 150000 },
+            "STU-102": { name: "Landing Page Bán Hàng Mini", price: 350000 },
+            "STU-103": { name: "Web Quản Lý Thư Viện Mini", price: 550000 },
+            "SME-201": { name: "Website Doanh Nghiệp Pro", price: 1200000 },
+            "ENT-901": { name: "Hệ thống Quản trị ERP", price: 4500000 }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id') || 'STU-101';
+        const product = productsDB[productId] || { name: "Mã nguồn tùy chỉnh webpass.com", price: 250000 };
+
+        document.getElementById('p-id').innerText = productId;
+        document.getElementById('p-name').innerText = product.name;
+        document.getElementById('p-price').innerText = product.price.toLocaleString() + 'đ';
+        
+        // Tạo cấu trúc mã QR Vietcombank (VCB) với STK 1065762817
+        const syntax = "WP " + productId;
+        document.getElementById('transfer-syntax').innerText = syntax;
+        document.getElementById('qr-code').src = `https://img.vietqr.io/image/VCB-1065762817-compact2.png?amount=${product.price}&addInfo=${encodeURIComponent(syntax)}`;
+
+        function submitOrder(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('cus-name').value;
+            const phone = document.getElementById('cus-phone').value;
+            const email = document.getElementById('cus-email').value;
+
+            // Cấu hình Telegram Bot để nhận thông báo về điện thoại của bạn
+            const botToken = "YOUR_BOT_TOKEN"; 
+            const chatId = "YOUR_CHAT_ID";     
+
+            const message = `🔔 ĐƠN HÀNG MỚI VCB (1065762817)!\n\n📦 Sản phẩm: ${product.name} (${productId})\n💰 Giá: ${product.price.toLocaleString()}đ\n👤 Khách hàng: ${name}\n📞 SĐT: ${phone}\n📧 Email: ${email}`;
+
+            if(botToken !== "YOUR_BOT_TOKEN") {
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: chatId, text: message })
+                }).catch(err => console.log(err));
+            }
+
+            alert("Cảm ơn bạn! Hệ thống đã ghi nhận thông tin và sẽ gửi source code qua email sau khi kiểm tra giao dịch chuyển khoản.");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

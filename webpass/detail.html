@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm | webpass.com</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] }, colors: { dark: '#020617', primary: '#3b82f6', secondary: '#8b5cf6', card: '#0f172a' } } } }
+    </script>
+    <style>
+        body { background-color: #020617; color: #f1f5f9; overflow-x: hidden; }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center shadow-2xl shadow-blue-500/20"><i class="fas fa-cubes text-white text-xl"></i></div>
+                <span class="text-2xl font-black uppercase tracking-tighter italic">webpass<span class="text-primary">.com</span></span>
+            </a>
+            <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-primary transition">← Quay lại trang chủ</a>
+        </div>
+    </nav>
+
+    <!-- Product Detail Section -->
+    <section class="pt-36 pb-24 px-6 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+            <!-- Hình ảnh sản phẩm -->
+            <div class="bg-card border border-white/5 rounded-[2.5rem] p-4 shadow-2xl overflow-hidden">
+                <img id="d-img" src="" class="w-full h-80 object-cover rounded-2xl mb-4">
+                <div class="flex gap-4 p-2 text-xs text-slate-400">
+                    <span><i class="fas fa-check text-primary"></i> Code chuẩn MVC</span>
+                    <span><i class="fas fa-check text-primary"></i> Kèm báo cáo Word</span>
+                    <span><i class="fas fa-check text-primary"></i> Hỗ trợ cài đặt từ A-Z</span>
+                </div>
+            </div>
+
+            <!-- Thông tin chi tiết & Mua hàng -->
+            <div class="space-y-6">
+                <div>
+                    <span id="d-tag" class="bg-primary/20 text-primary text-[10px] font-black uppercase px-3 py-1 rounded-full">Đang tải...</span>
+                    <h1 id="d-name" class="text-3xl md:text-4xl font-black mt-4 mb-2">Đang tải thông tin...</h1>
+                    <p class="text-slate-400 text-sm leading-relaxed" id="d-desc">Hệ thống đang cập nhật chi tiết mã nguồn sản phẩm.</p>
+                </div>
+
+                <div class="bg-card border border-white/5 p-6 rounded-3xl space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-400 text-sm">Mã sản phẩm:</span>
+                        <span id="d-id" class="font-bold text-primary">---</span>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-white/5 pt-4">
+                        <span class="text-slate-400 text-sm">Giá sở hữu trọn đời:</span>
+                        <span id="d-price" class="text-3xl font-black text-emerald-400">0đ</span>
+                    </div>
+                </div>
+
+                <a id="btn-buy" href="#" class="block w-full text-center bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white py-4 rounded-2xl font-black uppercase tracking-widest text-sm shadow-xl shadow-blue-500/25 transition">
+                    Tiến hành thanh toán ngay
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center bg-dark">
+        <p class="text-[10px] text-slate-700 font-black uppercase tracking-[1em]">&copy; 2026 WEBPASS.COM</p>
+    </footer>
+
+    <!-- Script nạp dữ liệu động -->
+    <script>
+        const productsDB = {
+            "STU-101": { name: "Portfolio Profile Cá Nhân", price: 150000, tag: "Sinh Viên", desc: "Mã nguồn portfolio cá nhân chuẩn UI/UX hiện đại, code sạch, tối ưu Responsive trên mọi thiết bị.", img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" },
+            "STU-102": { name: "Landing Page Bán Hàng Mini", price: 350000, tag: "Sinh Viên", desc: "Mẫu landing page bán hàng thu hút, tốc độ tải cực nhanh, tích hợp sẵn form nhận thông tin khách hàng.", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" },
+            "STU-103": { name: "Hệ Thống Quản Lý Thư Viện", price: 300000, tag: "Đồ Án", desc: "Đồ án hoàn thiện từ A-Z quản lý sách, độc giả, phiếu mượn trả. Kèm tài liệu báo cáo Word đầy đủ phục vụ bảo vệ đồ án.", img: "https://images.unsplash.com/photo-1551288049-bb1c003f07df?auto=format&fit=crop&w=800&q=80" },
+            "SME-201": { name: "Website Doanh Nghiệp Pro", price: 1200000, tag: "Doanh Nghiệp", desc: "Giải pháp website doanh nghiệp cao cấp, chuẩn SEO, tối ưu chuyển đổi khách hàng tiềm năng cực tốt.", img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80" }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id') || 'STU-101';
+        const product = productsDB[productId] || productsDB["STU-101"];
+
+        document.getElementById('d-id').innerText = productId;
+        document.getElementById('d-name').innerText = product.name;
+        document.getElementById('d-desc').innerText = product.desc;
+        document.getElementById('d-price').innerText = product.price.toLocaleString() + 'đ';
+        document.getElementById('d-tag').innerText = product.tag;
+        document.getElementById('d-img').src = product.img;
+        document.getElementById('btn-buy').href = `checkout.html?id=${productId}`;
+    </script>
+</body>
+</html>
